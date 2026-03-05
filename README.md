@@ -441,6 +441,6 @@ Apache-2.0
 
 ---
 
-**Built with ❤️ by OnChain **
+**Built with ❤️ by OnChainOS **
 
 [Discord](https://discord.gg/xxx) | [Twitter](https://twitter.com/xxx) | [Telegram](https://t.me/xxx)
