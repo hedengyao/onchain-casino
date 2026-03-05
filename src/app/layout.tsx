@@ -1,14 +1,11 @@
 'use client';
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { useState } from "react";
 import "./globals.css";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import WalletConnect from "@/components/WalletConnect";
 import { Language, translations, defaultLanguage } from "@/lib/i18n";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const metadata: Metadata = {
   title: "OnChain Casino - 社交交易赌场",
@@ -25,7 +22,7 @@ export default function RootLayout({
 
   return (
     <html lang={language}>
-      <body className={inter.className}>
+      <body className="font-sans">
         {/* 导航栏 */}
         <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-purple-500/20">
           <div className="max-w-7xl mx-auto px-4 py-4">

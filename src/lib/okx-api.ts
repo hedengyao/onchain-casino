@@ -83,8 +83,8 @@ async function okxFetch<T>(
           } else {
             resolve(json.data as T);
           }
-        } catch (e) {
-          reject(new Error(`解析失败：${e.message}`));
+        } catch (e: any) {
+          reject(new Error(`解析失败：${e?.message || '未知错误'}`));
         }
       });
     });

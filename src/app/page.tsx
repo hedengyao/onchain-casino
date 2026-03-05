@@ -19,11 +19,20 @@ import WalletConnect from '@/components/WalletConnect';
 
 // 英雄区域组件
 function HeroSection({ t }: { t: any }) {
+  // 使用固定值代替 window 对象，避免 SSR 错误
+  const getWindowSize = () => {
+    if (typeof window !== 'undefined') {
+      return { width: window.innerWidth, height: window.innerHeight };
+    }
+    return { width: 1920, height: 1080 };
+  };
+  const windowSize = getWindowSize();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* 背景动画 */}
       <div className="absolute inset-0 animated-bg" />
-      
+
       {/* 粒子效果 */}
       <div className="particle-container">
         {[...Array(20)].map((_, i) => (
@@ -31,8 +40,8 @@ function HeroSection({ t }: { t: any }) {
             key={i}
             className="absolute w-1 h-1 bg-purple-500 rounded-full"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * windowSize.width,
+              y: Math.random() * windowSize.height,
             }}
             animate={{
               y: [null, Math.random() * -100],
