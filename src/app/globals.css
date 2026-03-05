@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 250 100% 3%;
+    --foreground: 0 0% 100%;
+    --card: 250 100% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 250 100% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 270 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 250 50% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 250 50% 10%;
+    --muted-foreground: 250 30% 60%;
+    --accent: 320 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 250 50% 15%;
+    --input: 250 50% 15%;
+    --ring: 270 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, #080810 0%, #0F0F1A 50%, #1a0a2e 100%);
+    min-height: 100vh;
+  }
+}
+
+/* 霓虹灯效果 */
+.neon-text {
+  text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 20px #9333EA,
+    0 0 40px #9333EA,
+    0 0 80px #9333EA;
+}
+
+.neon-border {
+  box-shadow: 
+    0 0 5px #9333EA,
+    0 0 10px #9333EA,
+    inset 0 0 5px rgba(147, 51, 234, 0.1);
+}
+
+.neon-button {
+  @apply relative overflow-hidden;
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+  transition: all 0.3s ease;
+}
+
+.neon-button:hover {
+  box-shadow: 0 0 40px rgba(147, 51, 234, 0.8);
+  transform: translateY(-2px);
+}
+
+/* 卡片玻璃效果 */
+.glass-card {
+  @apply backdrop-blur-xl bg-opacity-10;
+  background: rgba(15, 15, 26, 0.6);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+}
+
+/* 渐变文字 */
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #9333EA 0%, #FF00FF 50%, #00F0FF 100%);
+}
+
+/* 动画背景 */
+.animated-bg {
+  background: linear-gradient(-45deg, #080810, #0F0F1A, #1a0a2e, #2d1b4e);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 粒子效果容器 */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(147, 51, 234, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(147, 51, 234, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(147, 51, 234, 0.7);
+}
+
+/* 下注按钮特殊样式 */
+.bet-button-yes {
+  @apply bg-green-600 hover:bg-green-500;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.bet-button-no {
+  @apply bg-red-600 hover:bg-red-500;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+/* 排行榜样式 */
+.leaderboard-item {
+  @apply flex items-center justify-between p-4 rounded-lg;
+  transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+  @apply bg-purple-900/30;
+  transform: translateX(5px);
+}
+
+.leaderboard-item.top-1 {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), transparent);
+  border-left: 3px solid #FFD700;
+}
+
+.leaderboard-item.top-2 {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.2), transparent);
+  border-left: 3px solid #C0C0C0;
+}
+
+.leaderboard-item.top-3 {
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.2), transparent);
+  border-left: 3px solid #CD7F32;
+}
+
+/* 加载动画 */
+.loading-spinner {
+  @apply animate-spin rounded-full border-4 border-purple-500/30 border-t-purple-500;
+  width: 40px;
+  height: 40px;
+}
+
+/* 成就徽章 */
+.achievement-badge {
+  @apply relative p-4 rounded-xl;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(255, 0, 255, 0.1));
+  border: 1px solid rgba(147, 51, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.achievement-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.5);
+}
+
+.achievement-badge.locked {
+  @apply opacity-50 grayscale;
+  filter: grayscale(100%);
+}
+
+/* 价格涨跌颜色 */
+.price-up {
+  @apply text-green-400;
+}
+
+.price-down {
+  @apply text-red-400;
+}

@@ -1,0 +1,8 @@
+{
+  "framework": "nextjs",
+  "regions": ["hnd1"],
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "outputDirectory": ".next"
+}
