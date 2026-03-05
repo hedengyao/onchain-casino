@@ -13,9 +13,11 @@ import {
   Wallet
 } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
+import { Language, translations, defaultLanguage } from '@/lib/i18n';
 
 // 英雄区域组件
-function HeroSection() {
+function HeroSection({ t }: { t: any }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* 背景动画 */}
@@ -54,12 +56,12 @@ function HeroSection() {
           <div className="flex items-center justify-center gap-3 mb-6">
             <Dice6 className="w-12 h-12 text-purple-500" />
             <h1 className="text-6xl md:text-8xl font-bold gradient-text">
-              OnChain Casino
+              {t.home.title}
             </h1>
           </div>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            炒币 + 预测 + 社交 + 博弈 = <span className="text-purple-400 font-bold">下一代 DeFi 体验</span>
+            {t.home.subtitle}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -72,7 +74,7 @@ function HeroSection() {
                 className="neon-button px-8 py-4 bg-purple-600 rounded-xl font-bold text-lg flex items-center gap-2"
               >
                 <Zap className="w-5 h-5" />
-                开始预测
+                {t.home.startPrediction}
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
@@ -85,7 +87,7 @@ function HeroSection() {
                 href="/battle-royale"
                 className="px-8 py-4 bg-transparent border-2 border-purple-500 rounded-xl font-bold text-lg hover:bg-purple-500/20 transition-all"
               >
-                🏆 交易大逃杀
+                🏆 {t.nav.battleRoyale}
               </Link>
             </motion.div>
           </div>
@@ -93,10 +95,10 @@ function HeroSection() {
           {/* 统计数据 */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
-              { label: '总交易量', value: '$2.4M', icon: TrendingUp },
-              { label: '活跃用户', value: '12,847', icon: Users },
-              { label: '预测市场', value: '156', icon: Dice6 },
-              { label: '奖金池', value: '$450K', icon: Trophy },
+              { label: t.home.totalVolume, value: '$2.4M', icon: TrendingUp },
+              { label: t.home.activeUsers, value: '12,847', icon: Users },
+              { label: t.home.predictionMarkets, value: '156', icon: Dice6 },
+              { label: t.home.prizePool, value: '$450K', icon: Trophy },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -120,7 +122,7 @@ function HeroSection() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="text-gray-400 text-sm">向下滚动了解更多</div>
+        <div className="text-gray-400 text-sm">{t.home.scrollDown}</div>
       </motion.div>
     </section>
   );
@@ -143,42 +145,42 @@ function FeatureCard({ icon: Icon, title, description, color }: any) {
 }
 
 // 功能展示区域
-function FeaturesSection() {
+function FeaturesSection({ t }: { t: any }) {
   const features = [
     {
       icon: Dice6,
-      title: '预测市场',
-      description: '对代币价格走向进行二元预测，动态赔率，全额赔付。像 Polymarket 一样简单，但更刺激。',
+      title: t.features.prediction.title,
+      description: t.features.prediction.desc,
       color: 'bg-gradient-135 from-purple-500 to-pink-500',
     },
     {
       icon: Users,
-      title: '组队打新',
-      description: '5 人组队，共同决策买哪个新币。风险共担，盈利共享，不再一个人战斗。',
+      title: t.features.teams.title,
+      description: t.features.teams.desc,
       color: 'bg-gradient-135 from-blue-500 to-cyan-500',
     },
     {
       icon: Zap,
-      title: '对赌协议',
-      description: '1v1 或多人对赌，自定义赌约内容。智能合约自动结算，公平透明。',
+      title: t.features.bet.title,
+      description: t.features.bet.desc,
       color: 'bg-gradient-135 from-orange-500 to-red-500',
     },
     {
       icon: Trophy,
-      title: '交易大逃杀',
-      description: '100 人参赛，24h 后收益最高者赢。实时排名，紧张刺激，奖金池高达 80% 返奖。',
+      title: t.features.battle.title,
+      description: t.features.battle.desc,
       color: 'bg-gradient-135 from-yellow-500 to-orange-500',
     },
     {
       icon: Sparkles,
-      title: '带单分润',
-      description: '创建跟投池，别人跟投你赚分润。透明化持仓，自动分润，建立你的交易帝国。',
+      title: t.features.copytrade.title,
+      description: t.features.copytrade.desc,
       color: 'bg-gradient-135 from-green-500 to-emerald-500',
     },
     {
       icon: Wallet,
-      title: '成就系统',
-      description: '完成特定任务获得 NFT 徽章。链上永久记录，可展示、可交易，证明你的传奇。',
+      title: t.features.achievements.title,
+      description: t.features.achievements.desc,
       color: 'bg-gradient-135 from-pink-500 to-rose-500',
     },
   ];
@@ -193,10 +195,10 @@ function FeaturesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            六大核心玩法
+            {t.features.title}
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            融合预测市场、社交交易、竞技博弈，打造前所未有的 DeFi 体验
+            {t.features.subtitle}
           </p>
         </motion.div>
 
@@ -219,7 +221,7 @@ function FeaturesSection() {
 }
 
 // CTA 区域
-function CTASection() {
+function CTASection({ t }: { t: any }) {
   return (
     <section className="py-20 px-4 relative">
       <div className="max-w-4xl mx-auto">
@@ -230,11 +232,10 @@ function CTASection() {
           className="glass-card p-12 rounded-3xl text-center border border-purple-500/30"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            准备好开始了吗？
+            {t.cta.title}
           </h2>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            连接钱包，立即参与预测市场、组队打新、交易大逃杀... 
-            下一个传奇交易者就是你！
+            {t.cta.subtitle}
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
@@ -243,7 +244,7 @@ function CTASection() {
               whileTap={{ scale: 0.95 }}
               className="neon-button px-10 py-5 bg-purple-600 rounded-xl font-bold text-xl"
             >
-              连接钱包
+              {t.cta.connectWallet}
             </motion.button>
             
             <motion.button
@@ -251,12 +252,12 @@ function CTASection() {
               whileTap={{ scale: 0.95 }}
               className="px-10 py-5 bg-transparent border-2 border-purple-500 rounded-xl font-bold text-xl hover:bg-purple-500/20 transition-all"
             >
-              查看教程
+              {t.cta.viewTutorial}
             </motion.button>
           </div>
 
           <p className="mt-8 text-sm text-gray-500">
-            ⚠️ 风险提示：请仅使用你能承受损失的资金参与
+            {t.cta.riskWarning}
           </p>
         </motion.div>
       </div>
@@ -265,7 +266,7 @@ function CTASection() {
 }
 
 // 页脚
-function Footer() {
+function Footer({ t }: { t: any }) {
   return (
     <footer className="py-12 px-4 border-t border-purple-500/20">
       <div className="max-w-7xl mx-auto">
@@ -273,30 +274,30 @@ function Footer() {
           <div>
             <h3 className="text-lg font-bold text-white mb-4">OnChain Casino</h3>
             <p className="text-gray-400 text-sm">
-              下一代社交交易赌场
+              {t.footer.description}
             </p>
           </div>
           
           <div>
-            <h4 className="text-sm font-bold text-gray-300 mb-4">产品</h4>
+            <h4 className="text-sm font-bold text-gray-300 mb-4">{t.footer.product}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/prediction" className="hover:text-purple-400">预测市场</Link></li>
-              <li><Link href="/teams" className="hover:text-purple-400">组队打新</Link></li>
-              <li><Link href="/battle-royale" className="hover:text-purple-400">交易大逃杀</Link></li>
+              <li><Link href="/prediction" className="hover:text-purple-400">{t.nav.prediction}</Link></li>
+              <li><Link href="/teams" className="hover:text-purple-400">{t.nav.teams}</Link></li>
+              <li><Link href="/battle-royale" className="hover:text-purple-400">{t.nav.battleRoyale}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-sm font-bold text-gray-300 mb-4">资源</h4>
+            <h4 className="text-sm font-bold text-gray-300 mb-4">{t.footer.resources}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/docs" className="hover:text-purple-400">文档</Link></li>
-              <li><Link href="/faq" className="hover:text-purple-400">FAQ</Link></li>
-              <li><Link href="/blog" className="hover:text-purple-400">博客</Link></li>
+              <li><Link href="/docs" className="hover:text-purple-400">{t.footer.docs}</Link></li>
+              <li><Link href="/faq" className="hover:text-purple-400">{t.footer.faq}</Link></li>
+              <li><Link href="/blog" className="hover:text-purple-400">{t.footer.blog}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-sm font-bold text-gray-300 mb-4">社交</h4>
+            <h4 className="text-sm font-bold text-gray-300 mb-4">{t.footer.social}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-purple-400">Twitter</a></li>
               <li><a href="#" className="hover:text-purple-400">Discord</a></li>
@@ -306,9 +307,9 @@ function Footer() {
         </div>
         
         <div className="pt-8 border-t border-purple-500/20 text-center text-sm text-gray-500">
-          <p>© 2026 OnChain Casino. Built with OKX OnchainOS Skills.</p>
+          <p>{t.footer.copyright}</p>
           <p className="mt-2">
-            ⚠️ 本平台为娱乐性质，存在资金风险。请谨慎参与。
+            {t.footer.riskWarning}
           </p>
         </div>
       </div>
@@ -318,12 +319,15 @@ function Footer() {
 
 // 主页面
 export default function Home() {
+  const [language] = useState<Language>(defaultLanguage);
+  const t = translations[language];
+
   return (
     <main className="min-h-screen">
-      <HeroSection />
-      <FeaturesSection />
-      <CTASection />
-      <Footer />
+      <HeroSection t={t} />
+      <FeaturesSection t={t} />
+      <CTASection t={t} />
+      <Footer t={t} />
     </main>
   );
 }
