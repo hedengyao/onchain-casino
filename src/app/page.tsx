@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  Dice6, 
-  TrendingUp, 
-  Users, 
-  Trophy, 
+import {
+  Dice6,
+  TrendingUp,
+  Users,
+  Trophy,
   Sparkles,
   ArrowRight,
   Zap,
@@ -15,6 +15,7 @@ import {
 import Link from 'next/link';
 import { useState } from 'react';
 import { Language, translations, defaultLanguage } from '@/lib/i18n';
+import WalletConnect from '@/components/WalletConnect';
 
 // 英雄区域组件
 function HeroSection({ t }: { t: any }) {
@@ -237,23 +238,18 @@ function CTASection({ t }: { t: any }) {
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
             {t.cta.subtitle}
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="neon-button px-10 py-5 bg-purple-600 rounded-xl font-bold text-xl"
-            >
-              {t.cta.connectWallet}
-            </motion.button>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <WalletConnect />
             
-            <motion.button
+            <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              href="/docs"
               className="px-10 py-5 bg-transparent border-2 border-purple-500 rounded-xl font-bold text-xl hover:bg-purple-500/20 transition-all"
             >
               {t.cta.viewTutorial}
-            </motion.button>
+            </motion.a>
           </div>
 
           <p className="mt-8 text-sm text-gray-500">

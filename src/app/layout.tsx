@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { useState } from "react";
 import "./globals.css";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import WalletConnect from "@/components/WalletConnect";
 import { Language, translations, defaultLanguage } from "@/lib/i18n";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -59,16 +60,13 @@ export default function RootLayout({
               {/* 右侧操作 */}
               <div className="flex items-center gap-3">
                 {/* 语言切换 */}
-                <LanguageSwitcher 
+                <LanguageSwitcher
                   currentLanguage={language}
                   onLanguageChange={setLanguage}
                 />
-                
+
                 {/* 钱包连接 */}
-                <button className="neon-button px-4 py-2 bg-purple-600 rounded-xl font-bold flex items-center gap-2 text-sm">
-                  <span>💳</span>
-                  <span className="hidden sm:inline">{t.nav.connectWallet}</span>
-                </button>
+                <WalletConnect language={language} />
               </div>
             </div>
           </div>
